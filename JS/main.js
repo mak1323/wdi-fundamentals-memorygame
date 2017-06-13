@@ -1,9 +1,6 @@
-//var cardOne = "queen";
-//var cardTwo = "queen";
-//var cardThree = "king";
-//var cardFour = "king";
 
-var cards = [
+
+let cards = [
 {
 	rank: "queen",
 	suit: "hearts",
@@ -26,23 +23,24 @@ var cards = [
 }
 ]
 
-var cardsInPlay = [];
+let cardsInPlay = [];
+let wrongGuess = false
 
-var cardsInPlayReset = []
 
-var checkForMatch = function() {
+let checkForMatch = function() {
+	let cardsInPlayReset = []
 	if (2 === cardsInPlay.length) {
-	if (cardsInPlay[0].rank === cardsInPlay[1].rank) {
+	if (cardsInPlay[0] === cardsInPlay[1]) {
+		cardsInPlay = cardsInPlayReset
 		alert("Your found a match!");
-		cardsInPlay = cardsInPlayReset;
 	} else {
 		alert("Try again.");
-		cardsInPlay = cardsInPlayReset;
+		cardsInPlay = cardsInPlayReset
 	}
 	}
 }
 
-var flipcard = function() {
+let flipcard = function() {
 	cardId = this.getAttribute('data-id');
 	console.log("User flipped a " + cards[cardId].rank);
 	console.log(cards[cardId].cardImage);
@@ -52,9 +50,9 @@ var flipcard = function() {
 	checkForMatch();
 }
 
-var createGameBoard = function() {
-	for (var i = 0; i < cards.length; i++) {
-		var cardElement = document.createElement('img');
+let createGameBoard = function() {
+	for (let i = 0; i < cards.length; i++) {
+		let cardElement = document.createElement('img');
 		cardElement.setAttribute('src', 'images/back.png');
 		cardElement.setAttribute('data-id', i);
 		cardElement.addEventListener('click', flipcard);
